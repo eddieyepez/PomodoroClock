@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Document</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="styles.css">
+
+	<script type="text/javascript" src="app.js"></script>
+
+</head>
+<body>
+	<div class="container py-5 px-5">
+		<div class="row">
+			<div class="col">
+				<h1 class="title">Pomodoro Clock</h1>
+			</div>
+		</div>
+		
+		<div class="row justify-content-center">
+			<div class="col ">
+				<h2 id="clockDisplay"></h2>
+			</div>
+		</div>
+
+		<div class="row justify-content-center mt-4">
+			<div class="col-6 d-flex flex-column">
+				<div class="row parameters justify-content-center">
+					<button class="btn btnDown" value="breakD">-</button>
+					<div id="breakDisplay" class="display">5</div>
+					<button class="btn btnUp" value="breakD">+</button>
+				</div>
+				<div class="row justify-content-center">
+					<h6>BREAK</h6>
+				</div>
+			</div>
+			<div class="col-6 d-flex flex-column">
+				<div class="row parameters justify-content-center">
+					<button class="btn btnDown" value="timer">-</button>
+					<div id="timerDisplay" class="display">25</div>
+					<button class="btn btnUp" value="timer">+</button>
+				</div>
+				<div class="row justify-content-center">
+					<h6>TIME</h6>
+				</div>
+			</div>
+		</div>
+
+		<div class="row mt-2">
+			<div class="col d-flex justify-content-center">
+				<button id="run" class="btn">START</button>
+			</div>
+		</div>
+
+	</div>	
+</body>
+</html>

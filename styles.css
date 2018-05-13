@@ -1,0 +1,30 @@
+.container{
+	background-color: lightgrey;
+}
+
+.title{
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.parameters{
+	font-size: 1.8rem;
+}
+
+.btn{
+	font-size: 1.2rem;
+}
+
+#clockDisplay{
+	text-align: center;
+	margin: 20px auto;
+	font-size: 6rem;
+	width: 250px;
+	background-color: lightblue;
+}
+
+.display{
+	width: 50px;
+	text-align: center;
+}
+
