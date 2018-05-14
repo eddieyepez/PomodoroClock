@@ -14,30 +14,39 @@ window.onload = function() {
   // btn run
   let btnRun = document.getElementById('run');
 
-  clockDisplay.innerHTML = '10';
-  timerDisplay.innerHTML = '25';
-  breakDisplay.innerHTML = '5';
+  clockDisplay.innerHTML = '25:00';
+  //timerDisplay.innerHTML = '25';
+  //breakDisplay.innerHTML = '5';
 
   //timer = false
   let timer = false;
   //default timer time
-  let timerTime = 25;
+  let timerTime = '25';
   //default break time
-  let breakTIme = 5;
+  let breakTime = '5';
+
+
+
+  let timeInterval;
 
   //click btn up => get parameter
   for(var x=0; x < btnUp.length; x++){
     btnUp[x].addEventListener("click", function (e){
-      //values ( user input, parameter )
-      values('add', this.value);
+      if(!timer){
+        //values ( user input, parameter )
+        values('add', this.value);
+      }
+      
     });
   }
 
   //click btn down => get parameter
   for(var x=0; x < btnDown.length; x++){
     btnDown[x].addEventListener("click", function (e){
-      //values ( user input, parameter )
-      values('substract', this.value);
+      if(!timer){
+        //values ( user input, parameter )
+        values('substract', this.value);
+      }
     });
   }
 
@@ -47,54 +56,78 @@ window.onload = function() {
 
     if(timer){
       btnRun.innerHTML = 'STOP';
+      startSession();
     }else{
       btnRun.innerHTML = 'START';
+      stop();
     }
 
-    pomodoro();
+    
   });
 
 //if user start
+  let startSession = () => {
+    if(timer){
+      pomodoro(timerTime);
+    }
+  }
 //  timer = true
 //  call function pomodoro
 
+  let breakSession = () => {
+    if(!timer){
+      pomodoro(breakTime);
+    }
+  }
+
+//function stop
+  let stop = () => {
+    clearInterval(timeInterval);
+  }
+//  stop pomodoro loop => timer = false
+//  clock display => reset
+
 //function pomodoro ( timer time - break time)
-  let pomodoro = () => {
+  let pomodoro = (time) => {
 
-    let clock = 10;
+    let clock = time-1;
+    let seconds = 60;
 
-    let timeInterval = setInterval( function(){
+    timeInterval = setInterval( function(){
 
-      clock--;
-      clockDisplay.innerHTML = clock;
+      seconds--;
 
-      if(clock === 0){
-        clearInterval(timeInterval);
+      if(seconds === 0){
+
+        clockDisplay.innerHTML = clock + ':00';
+        clock--;
+
+        if(clock === -1){
+          clearInterval(timeInterval);
+          timer = !timer;
+          if(timer){
+            startSession();
+          }else{
+            breakSession();
+          }
+        }
+
+        seconds = 59;
+
+      }else{
+
+        if(seconds < 10){
+          clockDisplay.innerHTML = clock + ':0' + seconds;
+        }else{
+          clockDisplay.innerHTML = clock + ':' + seconds;
+        }       
+
       }
 
     }, 1000);
 
-    
-
-
-
-//  while user timer = true
-//  start loop
-//    call function counter ( timer time )
-//      counter begin
-//      clock display
-//      call animation ( time value )
-//      once counter finish => triger break function ... promises?
-//    call function break ( break time )
-//      break begin
-//      clock display
-//      call animation ( time value )
-//      once break finish => triger timer function
   }
 
-//function stop
-//  stop pomodoro loop => timer = false
-//  clock display => reset
 
 //function values ( user input, parameter)
   let values = (input, parameter) =>{
@@ -109,27 +142,37 @@ window.onload = function() {
 
     //  if user input btn up
     if(input === 'add'){
-      if(value < 60){
-        value++;
-      }else{
-        value = 60;
-      }
-      
+        value++;      
     }else if (input === 'substract'){ //  else if user input btn down
-      if(value > 0){
+      if(value > 1){
         value--;
       }else{
-        value = 0;
+        value = 1;
       }
       
     }
 
     //  if parameter is timer time
     if(parameter === 'timer'){
+
       timerDisplay.innerHTML = value;
+
+      if(value < 10){
+        clockDisplay.innerHTML = '0'+ value + ':00';
+      }else{
+        clockDisplay.innerHTML = value + ':00';
+      }
+
+      timerTime = value;
+      
     }else if (parameter === 'breakD'){ //  else if parameter is break time
+
       breakDisplay.innerHTML = value;
+
+      breakTime = value;
     }
+
+    
 
   }
 
