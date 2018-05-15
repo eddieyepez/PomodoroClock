@@ -13,10 +13,19 @@ window.onload = function() {
   let btnDown = document.getElementsByClassName('btnDown');
   // btn run
   let btnRun = document.getElementById('run');
+  //progress bar
+  let progressBar = document.getElementById('userProgress');
+
+  let sessionCountText = document.getElementById('sessionsCount');
+  let breakCountText = document.getElementById('breaksCount');
 
   clockDisplay.innerHTML = '25:00';
   //timerDisplay.innerHTML = '25';
   //breakDisplay.innerHTML = '5';
+
+  let runnning = false;
+  let sessionCount = 0;
+  let breakCount = 0;
 
   //timer = false
   let timer = false;
@@ -32,7 +41,7 @@ window.onload = function() {
   //click btn up => get parameter
   for(var x=0; x < btnUp.length; x++){
     btnUp[x].addEventListener("click", function (e){
-      if(!timer){
+      if(!runnning){
         //values ( user input, parameter )
         values('add', this.value);
       }
@@ -43,7 +52,7 @@ window.onload = function() {
   //click btn down => get parameter
   for(var x=0; x < btnDown.length; x++){
     btnDown[x].addEventListener("click", function (e){
-      if(!timer){
+      if(!runnning){
         //values ( user input, parameter )
         values('substract', this.value);
       }
@@ -61,28 +70,43 @@ window.onload = function() {
       btnRun.innerHTML = 'START';
       stop();
     }
-
     
   });
 
 //if user start
   let startSession = () => {
+
+    runnning = true;
+    breakCountText.innerHTML = breakCount;
+    sessionCountText.innerHTML = sessionCount;
+
     if(timer){
       pomodoro(timerTime);
+      progressBar.classList.add("progress-bar-animated");
+      progressBar.classList.remove("bg-warning");
     }
   }
 //  timer = true
 //  call function pomodoro
 
   let breakSession = () => {
+    
+    sessionCountText.innerHTML = sessionCount;
+
     if(!timer){
       pomodoro(breakTime);
+      progressBar.classList.add("progress-bar-animated");
+      progressBar.classList.add("bg-warning");
     }
   }
 
 //function stop
   let stop = () => {
     clearInterval(timeInterval);
+    progressBar.classList.remove("progress-bar-animated");
+    sessionCount = 0;
+    breakCount = 0;
+    runnning = false;
   }
 //  stop pomodoro loop => timer = false
 //  clock display => reset
@@ -92,10 +116,14 @@ window.onload = function() {
 
     let clock = time-1;
     let seconds = 60;
-
+    let forProgress = time*60;
+    let progressCounter  = time*60;
+    let progressPercentage;
+ 
     timeInterval = setInterval( function(){
 
       seconds--;
+      progressCounter--;
 
       if(seconds === 0){
 
@@ -106,9 +134,11 @@ window.onload = function() {
           clearInterval(timeInterval);
           timer = !timer;
           if(timer){
-            startSession();
+            breakCount++;
+            startSession();          
           }else{
-            breakSession();
+            sessionCount++;
+            breakSession();          
           }
         }
 
@@ -124,8 +154,15 @@ window.onload = function() {
 
       }
 
+      progressPercentage = Math.round((progressCounter * 100) / forProgress);
+      animateBar(progressPercentage);
+
     }, 1000);
 
+  }
+
+  let animateBar = (percentage) => {
+    progressBar.style.width = percentage + '%';
   }
 
 
@@ -172,16 +209,6 @@ window.onload = function() {
       breakTime = value;
     }
 
-    
-
   }
-
-//function animation ( time value )
-//  if state === timer
-//    time value => do animation
-//  else if state === break
-//    time value => do animation
-//  else
-//    reset / stop animation
 
 }

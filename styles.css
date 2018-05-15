@@ -1,10 +1,31 @@
+body{
+	font-family: 'Inconsolata', monospace;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #282828;
+	color: #969696;
+	box-sizing: border-box;
+}
+
 .container{
-	background-color: lightgrey;
+	box-sizing: border-box;
+	margin: 0;
+	background-color: #363636;
+	border-radius: 15px;
+	padding-left: 1rem !important;
+	padding-right: 1rem  !important;
+	padding-top: 0rem  !important;
+	padding-bottom: 0rem  !important;
+	
 }
 
 .title{
 	text-align: center;
 	text-transform: uppercase;
+	letter-spacing: 0.07em;
 }
 
 .parameters{
@@ -17,14 +38,34 @@
 
 #clockDisplay{
 	text-align: center;
-	margin: 20px auto;
+	border-radius: 15px;
+	border: 2px solid #6c757d;
 	font-size: 6rem;
-	width: 250px;
-	background-color: lightblue;
+	width: 290px;
+	background-color: #969696;
+	color: white;
 }
 
 .display{
 	width: 50px;
 	text-align: center;
+}
+
+/*Medium devices (tablets, 768px and up)*/
+@media screen and (min-width: 768px) { 
+	.container{
+		padding-left: 3rem!important;
+		padding-right: 3rem!important;
+	}
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media screen and (min-width: 992px) {
+
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media screen and (min-width: 1200px) {
+
 }
 
