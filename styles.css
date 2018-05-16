@@ -2,16 +2,25 @@ body{
 	font-family: 'Inconsolata', monospace;
 	width: 100vw;
 	height: 100vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	background-color: #282828;
 	color: #969696;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 
-.container{
-	box-sizing: border-box;
+#internal{
+	background-color: red;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	margin: 0;
 	background-color: #363636;
 	border-radius: 15px;
@@ -19,13 +28,35 @@ body{
 	padding-right: 1rem  !important;
 	padding-top: 0rem  !important;
 	padding-bottom: 0rem  !important;
-	
+	-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.container{
+	-ms-flex-line-pack: center;
+	    align-content: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;	
 }
 
 .title{
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: 0.07em;
+}
+
+#state{
+	height: 45px;
+	text-align: right;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 4em;
+	color: #6c757d;
+	letter-spacing: 0.02em;
 }
 
 .parameters{
@@ -39,10 +70,8 @@ body{
 #clockDisplay{
 	text-align: center;
 	border-radius: 15px;
-	border: 2px solid #6c757d;
 	font-size: 6rem;
-	width: 290px;
-	background-color: #969696;
+	background-color: #6c757d;
 	color: white;
 }
 
@@ -58,14 +87,3 @@ body{
 		padding-right: 3rem!important;
 	}
 }
-
-/*Large devices (desktops, 992px and up)*/
-@media screen and (min-width: 992px) {
-
-}
-
-/*Extra large devices (large desktops, 1200px and up)*/
-@media screen and (min-width: 1200px) {
-
-}
-

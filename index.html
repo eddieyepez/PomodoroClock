@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Document</title>
+	<title>Pomodoro Clock</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
 
@@ -15,63 +15,75 @@
 
 </head>
 <body>
-	<div class="container py-5 px-5 ">
-
-		<div class="row mt-2 pt-4">
-			<div class="col">
-				<h2 class="title">Pomodoro Clock</h2>
+	<div class="container d-flex flex-column justify-content-center">
+		<div class="col-12">
+			<h2 class="title">Pomodoro Clock</h2>
+		</div>
+		<div id="internal" class="col-12 col-md-8 col-lg-6 px-1">	
+			<div class="row mt-2 pt-4">
+				<div class="col">
+					<h2 id="state"></h2>
+				</div>
 			</div>
-		</div>
-		
-		<div class="row justify-content-center">
-			<div class="col- ">
-				<h2 id="clockDisplay"></h2>
-			</div>
-		</div>
-
-		<div class="progress" style="height: 4px;">
-		  <div id="userProgress" class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-		</div>
-
-		<div class="row justify-content-center mt-4">
 			
-			<div class="col-6 col-md-4 d-flex col-lg-2 flex-column">
-				<div class="row parameters justify-content-center">
-					<button class="btn btnDown btn-secondary" value="timer">-</button>
-					<div id="timerDisplay" class="display">25</div>
-					<button class="btn btnUp btn-secondary" value="timer">+</button>
+			<div class="row justify-content-center">
+				<div class="col-12 ">
+					<h2 id="clockDisplay"></h2>
 				</div>
-				<div class="row justify-content-center mt-2">
-					<h6>SESSION LENGTH</h6>
+			</div>
+			
+			<div class="row justify-content-center">
+				<div class="col-12">
+					<div class="progress" style="height: 4px;">
+					  <div id="userProgress" class="progress-bar progress-bar-striped" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+					</div>
 				</div>
 			</div>
 
-			<div class="col-6 col-md-4 col-lg-2 d-flex flex-column">
-				<div class="row parameters justify-content-center">
-					<button class="btn btnDown btn-secondary" value="breakD">-</button>
-					<div id="breakDisplay" class="display">5</div>
-					<button class="btn btnUp btn-secondary" value="breakD">+</button>
+			<div class="row justify-content-center mt-4">
+				
+				<div class="col-6 col-md-4 col-lg-4 flex-column">
+					<div class="row parameters justify-content-center">
+						<button class="btn btnDown btn-secondary" value="timer">-</button>
+						<div id="timerDisplay" class="display">25</div>
+						<button class="btn btnUp btn-secondary" value="timer">+</button>
+					</div>
+					<div class="row justify-content-center mt-2">
+						<h6>SESSION LENGTH</h6>
+					</div>
 				</div>
-				<div class="row justify-content-center mt-2">
-					<h6>BREAK LENGTH</h6>
+
+				<div class="col-6 col-md-4 col-lg-4 flex-column">
+					<div class="row parameters justify-content-center">
+						<button class="btn btnDown btn-secondary" value="breakD">-</button>
+						<div id="breakDisplay" class="display">5</div>
+						<button class="btn btnUp btn-secondary" value="breakD">+</button>
+					</div>
+					<div class="row justify-content-center mt-2">
+						<h6>BREAK LENGTH</h6>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row my-4">
+				<div class="col d-flex justify-content-center">
+					<button id="run" class="btn btn-secondary">START</button>
+				</div>
+			</div>
+
+			<div class="row justify-content-center">
+				<div class="col-12 col-md-10 col-lg-9">
+					<div class="row">
+						<div class="col d-flex justify-content-between">
+							<h6>Sessions: <span id="sessionsCount">0</span></h6>
+							<h6>Breaks: <span id="breaksCount">0</span></h6>
+						</div>
+					</div>
 				</div>
 			</div>
 
 		</div>
-
-		<div class="row my-4">
-			<div class="col d-flex justify-content-center">
-				<button id="run" class="btn btn-secondary">START</button>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col d-flex justify-content-between">
-				<h6>Total Sessions: <span id="sessionsCount">0</span></h6>
-				<h6>Total Breaks: <span id="breaksCount">0</span></h6>
-			</div>
-		</div>
-
 	</div>	
 </body>
 </html>

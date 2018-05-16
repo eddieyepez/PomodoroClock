@@ -1,5 +1,7 @@
 //onLoad
 window.onload = function() {
+
+  let state = document.getElementById('state');
   
   //clock display
   let clockDisplay = document.getElementById('clockDisplay');
@@ -34,9 +36,9 @@ window.onload = function() {
   //default break time
   let breakTime = '5';
 
-
-
   let timeInterval;
+
+  var audio = new Audio('sounds/pager.mp3');
 
   //click btn up => get parameter
   for(var x=0; x < btnUp.length; x++){
@@ -63,7 +65,10 @@ window.onload = function() {
 
     timer = !timer;
 
-    if(timer){
+    runnning = !runnning;
+
+    //if(timer){
+    if(runnning){
       btnRun.innerHTML = 'STOP';
       startSession();
     }else{
@@ -79,6 +84,7 @@ window.onload = function() {
     runnning = true;
     breakCountText.innerHTML = breakCount;
     sessionCountText.innerHTML = sessionCount;
+    state.innerHTML = "SESSION";
 
     if(timer){
       pomodoro(timerTime);
@@ -92,6 +98,7 @@ window.onload = function() {
   let breakSession = () => {
     
     sessionCountText.innerHTML = sessionCount;
+    state.innerHTML = "BREAK!";
 
     if(!timer){
       pomodoro(breakTime);
@@ -107,6 +114,7 @@ window.onload = function() {
     sessionCount = 0;
     breakCount = 0;
     runnning = false;
+    timer = false;
   }
 //  stop pomodoro loop => timer = false
 //  clock display => reset
@@ -135,9 +143,11 @@ window.onload = function() {
           timer = !timer;
           if(timer){
             breakCount++;
+            audio.play();
             startSession();          
           }else{
             sessionCount++;
+            audio.play();
             breakSession();          
           }
         }
